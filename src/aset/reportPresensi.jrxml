@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e45b36a8-dddc-4c8b-9577-7166ae4b5169">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="84"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#8FAFCC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#F3F6F8"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="pertemuanText" class="java.lang.String"/>
+	<parameter name="idPbmText" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT DISTINCT (tb_siswa.nis),tb_siswa.nama,pertemuan,
+status_kehadiran,berita_acara,tanggal,tb_matapelajaran.nama as mapel,bab,kelas,jam,status_hadir_guru,
+tb_guru.nama as guru,tb_guru.nip
+FROM tb_presensi,tb_belajar_mengajar,tb_matapelajaran,tb_guru,tb_materi,tb_kelas,tb_siswa
+WHERE pertemuan =   $P{pertemuanText}   AND tb_presensi.id_pbm  =   $P{idPbmText}
+AND tb_presensi.id_pbm = tb_belajar_mengajar.id_pbm
+AND tb_kelas.id_kelas = tb_belajar_mengajar.id_kelas
+AND tb_presensi.id_pbm = tb_belajar_mengajar.id_pbm
+AND tb_belajar_mengajar.nip = tb_guru.nip
+AND tb_guru.id_mapel = tb_matapelajaran.id_mapel
+AND tb_materi.id_materi = tb_presensi.id_materi
+AND tb_materi.id_mapel = tb_matapelajaran.id_mapel
+AND tb_siswa.nis = tb_presensi.nis]]>
+	</queryString>
+	<field name="nis" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nama" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pertemuan" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="status_kehadiran" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="berita_acara" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tanggal" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="mapel" class="java.lang.String"/>
+	<field name="bab" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="kelas" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jam" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="status_hadir_guru" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="guru" class="java.lang.String"/>
+	<field name="nip" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="nis">
+		<groupExpression><![CDATA[$F{nis}]]></groupExpression>
+	</group>
+	<group name="nama">
+		<groupExpression><![CDATA[$F{nama}]]></groupExpression>
+	</group>
+	<group name="jenis_kelamin">
+		<groupExpression><![CDATA[]]></groupExpression>
+	</group>
+	<group name="alamat">
+		<groupExpression><![CDATA[]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="345" splitType="Stretch">
+			<rectangle>
+				<reportElement x="205" y="188" width="57" height="17" uuid="688c30ee-74b1-4307-806a-221c8a8ca5ea"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="205" y="221" width="258" height="47" uuid="767430ac-cdf0-4b64-b03e-4710ee04e3af"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="205" y="63" width="57" height="17" uuid="6960edf3-6f27-4d03-afdf-232d6ab3227a"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="398" y="63" width="66" height="17" uuid="2fcb51a0-5487-4eb3-ad08-0fa849e7e8a3"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="227" y="296" width="93" height="21" uuid="5e4d43e5-9563-4c8a-9a87-5d511bd1a4ce"/>
+				<textElement>
+					<font size="16" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Daftar Hadir]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="174" y="0" width="230" height="29" uuid="78bdfb0c-ec84-4eb5-9a7d-fce596b9406f"/>
+				<textElement>
+					<font size="20" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Berita Acara Pertemuan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="74" y="92" width="100" height="17" uuid="f4672539-cb50-4b95-a93f-70b68d7d3cc1"/>
+				<text><![CDATA[Pertemuan - Bab]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="74" y="63" width="111" height="17" uuid="5b397dfd-62f7-4020-9bef-121e2e51dfdc"/>
+				<text><![CDATA[Kelas - Pelajaran - Jam]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="268" y="92" width="12" height="17" uuid="deb25d46-e389-486f-af64-2e86626fa866"/>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="74" y="159" width="88" height="17" uuid="5cfcd0d0-fce2-4447-bee3-ab957d9103dc"/>
+				<text><![CDATA[NIP - Nama Guru]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="74" y="127" width="115" height="17" uuid="ec5380a7-8e60-44c8-97c9-5204c9d4c750"/>
+				<text><![CDATA[Tanggal(bulan/hari/tahun)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="74" y="221" width="57" height="17" uuid="e500dd13-3dbb-406b-968c-fac239ccce52"/>
+				<text><![CDATA[Berita Acara ]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="279" y="63" width="107" height="17" uuid="3ef43d5c-d434-4c37-93bb-e2802d3db481"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="205" y="92" width="57" height="17" uuid="0a70ac3c-f5f2-4080-81d1-f2f48e02e877"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="205" y="127" width="57" height="17" uuid="af561722-791c-4d4a-ae56-e4533966c84d"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="205" y="159" width="57" height="17" uuid="28963be8-b197-433b-96e5-f5de6949c3cb"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="279" y="159" width="184" height="17" uuid="ec82891b-c0ae-44b1-bf76-1a645c3db998"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="279" y="92" width="185" height="17" uuid="5afae9b4-1f15-4f08-bcbf-2ffe0eca3198"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="268" y="63" width="12" height="17" uuid="e3f5ea6b-3e28-4688-a88f-4d2086b0a6ef"/>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="392" y="63" width="12" height="17" uuid="d529b378-373e-4e87-86e3-6febc73c1bfc"/>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="267" y="159" width="12" height="17" uuid="c3a35c85-3f84-437c-b5ad-a496091eb78c"/>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="213" y="65" width="46" height="15" uuid="5c252b5f-ee61-4298-8218-c37370c9ddd3"/>
+				<textElement markup="none">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kelas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="214" y="95" width="37" height="15" uuid="70a4321d-9ada-4bea-aa71-2f6e3fe389ae"/>
+				<textElement markup="none">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pertemuan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="285" y="65" width="94" height="15" uuid="439a3561-9d50-490a-925d-2d614a0eb666"/>
+				<textElement markup="none">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mapel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="403" y="65" width="56" height="15" uuid="0c8e2330-ea4b-49a2-b980-30031a9bdb5e"/>
+				<textElement markup="none">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jam}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="285" y="96" width="170" height="15" uuid="34f1acc5-52ac-4a13-b3dc-c47965f7248f"/>
+				<textElement markup="none">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bab}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="215" y="129" width="36" height="15" uuid="e4c2c45f-cbb6-43e2-8e52-b7970ae6fb8d"/>
+				<textElement markup="none">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tanggal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="214" y="161" width="48" height="15" uuid="5b967e6e-fbfd-4645-8af6-32ffadb6b869"/>
+				<textElement markup="none">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nip}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="285" y="161" width="150" height="15" uuid="7906f54e-89bc-477a-8ac0-415f82c6734e"/>
+				<textElement markup="none">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{guru}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="213" y="223" width="250" height="45" uuid="7b51d8f8-2964-43c8-9a9a-57c6dc839144"/>
+				<textElement markup="none">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{berita_acara}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="74" y="188" width="111" height="17" uuid="b8991085-c345-486e-b758-6e8cf87fd82a"/>
+				<text><![CDATA[Status kehadiran Guru]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="211" y="192" width="106" height="15" uuid="10c69bcb-31b5-469e-a56d-a194564f91df"/>
+				<textElement markup="none">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{status_hadir_guru}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="21" splitType="Stretch">
+			<rectangle>
+				<reportElement x="353" y="1" width="111" height="20" uuid="98ce0af3-2185-4e09-9f17-b0aa85b5672d"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="74" y="1" width="97" height="20" uuid="7d3b3c46-2896-4061-b5b6-f1454733b326"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="171" y="1" width="182" height="20" uuid="4a2ef6f3-ed15-4d89-8340-5cf21171da34"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="94" y="4" width="43" height="17" uuid="2739329a-4188-4c06-a251-7fabf86dd659"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NIS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="235" y="4" width="82" height="17" uuid="3eae0624-a791-440e-b845-dcf4b8d3fcbb"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Siswa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="365" y="4" width="86" height="17" uuid="ea7b0f39-aef8-4bbe-b7ce-9457f6116e57"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Status Kehadiran]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement x="171" y="0" width="182" height="20" uuid="f0d2be20-70a1-41cb-9da3-1a5937769c2f"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="74" y="0" width="97" height="20" uuid="18a07039-33e1-4d15-9d23-c38b641d279e"/>
+			</rectangle>
+			<textField>
+				<reportElement x="94" y="4" width="64" height="15" uuid="3d95043f-80d3-477a-845a-5552b39a4da8"/>
+				<textElement markup="none">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nis}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="189" y="5" width="90" height="15" uuid="d5a78173-f792-4f22-a9bd-d1c799f35785"/>
+				<textElement markup="none">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="353" y="0" width="111" height="20" uuid="e530bc0d-214e-48ff-825d-d309e25fb39d"/>
+			</rectangle>
+			<textField>
+				<reportElement x="365" y="5" width="98" height="15" uuid="105b4606-abc0-49dc-88f7-7ed73236c92a"/>
+				<textElement markup="none">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{status_kehadiran}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="19" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
